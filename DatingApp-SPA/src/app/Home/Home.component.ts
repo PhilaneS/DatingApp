@@ -11,18 +11,12 @@ registerMode = false;
 values: any;
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    this.getValues();
-  }
+  ngOnInit() { }
+  
   registerToggle() {
-    this.registerMode =  true; // !this.registerMode;
+    this.registerMode =  true; 
   }
-  getValues() {
-    this.http.get('http://localhost:5000/api/values').subscribe(response => {
-      this.values = response;
-    // tslint:disable-next-line: no-shadowed-variable
-    }, error => { console.log(error); }   );
-  }
+ 
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
   }

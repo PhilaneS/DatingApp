@@ -9,8 +9,9 @@ namespace DatingApp.API.Data
 {
     public static class Seed
     {
-        public static void SeedUsers(DataContext context) {
-            if(!context.Users.Any()){
+        public static void SeedUsers(DataContext context) 
+        {
+            //if(!context.Users.Any()){
                 var userData = System.IO.File.ReadAllText("Data/userSeedData.json");
                 var users = JsonConvert.DeserializeObject<List<User>>(userData);
                 foreach (var user in users)
@@ -21,11 +22,12 @@ namespace DatingApp.API.Data
 
                     user.PasswordHash = Convert.ToBase64String(passwordHash);
                     user.PasswordSalt = Convert.ToBase64String(passwordSalt);
+                    user.Username = user.Username.ToLower();
                     context.Users.Add(user);
                 }
 
                 context.SaveChanges();
-            }
+            //}
         }
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

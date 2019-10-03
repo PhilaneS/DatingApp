@@ -1,3 +1,4 @@
+import { UserService } from './_services/user.service';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,9 +15,10 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './Home/Home.component';
 import { RegisterComponent } from './register/register.component';
 import { appRoutes } from './routes';
-import { MemberListComponent } from './member-List/member-List.component';
+import { MemberListComponent } from './Members/member-list/member-List.component';
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MemberCardComponent } from './Members/member-card/member-card.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { MessagesComponent } from './messages/messages.component';
       RegisterComponent,
       MemberListComponent,
       ListComponent,
-      MessagesComponent
+      MessagesComponent,
+      MemberCardComponent
    ],
    imports: [
       BrowserModule,
@@ -40,7 +43,8 @@ import { MessagesComponent } from './messages/messages.component';
    providers: [
       AuthService,
       ErrorInterceptorProvider,
-      AlertifyService
+      AlertifyService,
+      UserService
    ],
    bootstrap: [
       AppComponent

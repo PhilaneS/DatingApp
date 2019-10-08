@@ -1,3 +1,4 @@
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { UserService } from './_services/user.service';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './_services/auth.service';
@@ -24,8 +25,11 @@ import { MemberDetailComponent } from './Members/member-detail/member-detail.com
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { MemberEditComponent } from './Members/member-edit/member-edit.component';
+import { PreventUnsavedChanges } from './_guards/privent-unsaved-changes-guard';
+import { AuthGuard } from './_guards/auth.guard';
 
-export function tokenGetter() {
+export function getToken() {
    return localStorage.getItem('token');
 }
 export class CustomHammerConfig extends HammerGestureConfig  {
@@ -45,7 +49,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ListComponent,
       MessagesComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -58,9 +63,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       NgxGalleryModule,
       JwtModule.forRoot({
          config: {
-            tokenGetter: tokenGetter,
-            whitelistedDomains:['localhost:5000'],
-            blacklistedRoutes:['localhost:5000/api/auth']
+            tokenGetter: getToken,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
          }
       })
    ],
@@ -68,10 +73,15 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
+      AuthGuard,
       UserService,
       MemberDetailResolver,
       MemberListResolver,
-      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+      MemberEditResolver,
+      { provide: HAMMER_GESTURE_CONFIG,
+        useClass: CustomHammerConfig
+      },
+      PreventUnsavedChanges
    ],
    bootstrap: [
       AppComponent

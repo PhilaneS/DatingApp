@@ -17,7 +17,6 @@ export class MemberDetailComponent implements OnInit {
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute ) { }
 
   ngOnInit() {
-    //this.loadUser();
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
@@ -26,21 +25,21 @@ export class MemberDetailComponent implements OnInit {
       width: '500px',
       height: '500px',
       imagePercent: 100,
-      thumbnailsColumns:4,
+      thumbnailsColumns: 4,
       imageAnimation: NgxGalleryAnimation.Slide,
-      preview:false
+      preview: false
     }];
     this.galleryImages = this.getImages();
   }
-  getImages(){
+  getImages() {
     const imageUrls = [];
-    for (let photo of this.user.photos) {
+    for (const photo of this.user.photos) {
        imageUrls.push({
          small: photo.url,
-         medium:photo.url,
+         medium: photo.url,
          big: photo.url,
-         description:photo.description
-       });      
+         description: photo.description
+       });
     }
     return imageUrls;
   }

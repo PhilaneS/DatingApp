@@ -3,10 +3,10 @@ import { UserService } from './../../_services/user.service';
 import { AuthService } from './../../_services/auth.service';
 import { Photo } from './../../_models/photo';
 import { User } from './../../_models/user';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
-import { error } from 'protractor';
+
 
 @Component({
   selector: 'app-photo-editor',
@@ -17,6 +17,7 @@ export class PhotoEditorComponent implements OnInit {
 user: User;
 @Input() photos: Photo[];
 @Input() uploader: FileUploader; // = new FileUploader({url: URL});
+@Output() getMemberChangePhoto = new EventEmitter<string>();
  hasBaseDropZoneOver = false;
  baseUrl = environment.apiUrl;
  currentMainPhoto: Photo;
@@ -63,6 +64,7 @@ user: User;
     .subscribe(() => {
       this.currentMainPhoto = this.photos.filter(p => p.isMain === true)[0];
       this.currentMainPhoto.isMain = false;
+      this.getMemberChangePhoto.emit(photo.url);
       photo.isMain = true;
       console.log('Successfully set to main..');
     }, error => {

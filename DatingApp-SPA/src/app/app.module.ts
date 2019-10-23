@@ -28,6 +28,8 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { MemberEditComponent } from './Members/member-edit/member-edit.component';
 import { PreventUnsavedChanges } from './_guards/privent-unsaved-changes-guard';
 import { AuthGuard } from './_guards/auth.guard';
+import { PhotoEditorComponent } from './Members/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 export function getToken() {
    return localStorage.getItem('token');
@@ -50,7 +52,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
@@ -61,6 +64,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
+      FileUploadModule,
       JwtModule.forRoot({
          config: {
             tokenGetter: getToken,

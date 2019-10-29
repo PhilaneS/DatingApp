@@ -64,11 +64,22 @@ user: User;
     .subscribe(() => {
       this.currentMainPhoto = this.photos.filter(p => p.isMain === true)[0];
       this.currentMainPhoto.isMain = false;
-      this.getMemberChangePhoto.emit(photo.url);
       photo.isMain = true;
-      console.log('Successfully set to main..');
+      this.uathService.changeMemberPhoto(photo.url);
+      this.uathService.currentUser.photoUrl = photo.url;
+      localStorage.setItem('user', JSON.stringify(this.uathService.currentUser));
     }, error => {
       this.alertify.error(error);
+    });
+  }
+  deletePhoto(id: number) {
+    this.alertify.confirm('Are you sure you want to delete this photo?', () => {
+      this.userService.deletePhoto(this.uathService.decodedToken.nameid, id).subscribe(() => {
+        this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
+        this.alertify.success('Photo has been deleted');
+      }, error => {
+        this.alertify.error('Failed to delete the photo');
+      });
     });
   }
 }

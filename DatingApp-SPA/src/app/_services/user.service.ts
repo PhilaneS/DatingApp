@@ -31,4 +31,7 @@ setMainPhoto(userId: number, id: number) {
   console.log(url);
   return this.http.post(url, {});
 }
+deletePhoto(userId: number, id: number) {
+  return this.http.delete(this.baseUrl + 'user/' + userId + '/photos/' + id );
+}
 }

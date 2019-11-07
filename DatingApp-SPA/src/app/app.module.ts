@@ -1,14 +1,15 @@
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { UserService } from './_services/user.service';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './_services/auth.service';
-import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +30,8 @@ import { MemberEditComponent } from './Members/member-edit/member-edit.component
 import { PreventUnsavedChanges } from './_guards/privent-unsaved-changes-guard';
 import { AuthGuard } from './_guards/auth.guard';
 import { PhotoEditorComponent } from './Members/photo-editor/photo-editor.component';
-import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+import { FileUploadModule } from 'ng2-file-upload';
+// import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 export function getToken() {
    return localStorage.getItem('token');
@@ -57,10 +59,13 @@ export class CustomHammerConfig extends HammerGestureConfig  {
    ],
    imports: [
       BrowserModule,
+      BrowserAnimationsModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       BsDropdownModule.forRoot(),
+      BsDatepickerModule.forRoot(),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,

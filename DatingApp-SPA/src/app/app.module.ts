@@ -30,8 +30,8 @@ import { MemberEditComponent } from './Members/member-edit/member-edit.component
 import { PreventUnsavedChanges } from './_guards/privent-unsaved-changes-guard';
 import { AuthGuard } from './_guards/auth.guard';
 import { PhotoEditorComponent } from './Members/photo-editor/photo-editor.component';
-import { FileUploadModule } from 'ng2-file-upload';
-// import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+// import { FileUploadModule } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 export function getToken() {
    return localStorage.getItem('token');

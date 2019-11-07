@@ -56,6 +56,11 @@ user: User;
         };
         this.photos.push(photo);
 
+        if (photo.isMain) {
+          this.uathService.changeMemberPhoto(photo.url);
+      this.uathService.currentUser.photoUrl = photo.url;
+      localStorage.setItem('user', JSON.stringify(this.uathService.currentUser));
+        }
       }
     };
   }

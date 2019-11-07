@@ -43,6 +43,7 @@ namespace DatingApp.API.Controllers
 
             return CreatedAtRoute("GetUser",new { Controller ="User", id = createdUser.Id },userToReturn);
         }
+        
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {

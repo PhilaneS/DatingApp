@@ -58,8 +58,8 @@ user: User;
 
         if (photo.isMain) {
           this.uathService.changeMemberPhoto(photo.url);
-      this.uathService.currentUser.photoUrl = photo.url;
-      localStorage.setItem('user', JSON.stringify(this.uathService.currentUser));
+          this.uathService.currentUser.photoUrl = photo.url;
+          localStorage.setItem('user', JSON.stringify(this.uathService.currentUser));
         }
       }
     };

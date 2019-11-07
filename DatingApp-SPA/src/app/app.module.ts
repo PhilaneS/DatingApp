@@ -32,6 +32,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { PhotoEditorComponent } from './Members/photo-editor/photo-editor.component';
 // import { FileUploadModule } from 'ng2-file-upload';
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 export function getToken() {
    return localStorage.getItem('token');
@@ -55,7 +56,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      TimeAgoPipe
    ],
    imports: [
       BrowserModule,

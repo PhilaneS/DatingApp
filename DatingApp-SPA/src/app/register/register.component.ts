@@ -21,22 +21,11 @@ export class RegisterComponent implements OnInit {
               private alertify: AlertifyService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    if (this.registerForm.valid) {
-      this.user = Object.assign({}, this.registerForm.value);
-      this.authService.register(this.user).subscribe(() => {
-        this.alertify.success('Registration successfull');
-      }, error => {
-        this.alertify.error(error);
-      }, () => {
-        this.authService.login(this.user).subscribe(() => {
-          this.route.navigate(['/members']);
-        });
-      });
-    }
+
+    this.createRegisterForm();
     this.bsConfig = {
       containerClass: 'theme-red'
-    },
-    this.createRegisterForm();
+    };
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
@@ -54,12 +43,18 @@ export class RegisterComponent implements OnInit {
     return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch : true };
   }
  register() {
-  // this.authService.register(this.model).subscribe(() => {
-  //  this.alertify.success('registration successfully');
-  // }, error => {
-  //   this.alertify.error(error);
-  // });
-  console.log(this.registerForm.value);
+  if (this.registerForm.valid) {
+    this.user = Object.assign({}, this.registerForm.value);
+    this.authService.register(this.user).subscribe(() => {
+      this.alertify.success('Registration successfull');
+    }, error => {
+      this.alertify.error(error);
+    }, () => {
+      this.authService.login(this.user).subscribe(() => {
+        this.route.navigate(['/members']);
+      });
+    });
+  }
  }
  cancel() {
   this.cancelRegister.emit(false);

@@ -23,6 +23,7 @@ namespace DatingApp.API.Data
                     user.PasswordHash = Convert.ToBase64String(passwordHash);
                     user.PasswordSalt = Convert.ToBase64String(passwordSalt);
                     user.Username = user.Username.ToLower();
+                    user.Gender = user.Gender.ToLower();
                     context.Users.Add(user);
                 }
 

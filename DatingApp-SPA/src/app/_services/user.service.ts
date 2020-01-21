@@ -56,4 +56,7 @@ setMainPhoto(userId: number, id: number) {
 deletePhoto(userId: number, id: number) {
   return this.http.delete(this.baseUrl + 'user/' + userId + '/photos/' + id );
 }
+sendLike(id: number, recipientId: number) {
+  return this.http.post(this.baseUrl + 'user/' + id + '/like/' + recipientId, {});
+}
 }

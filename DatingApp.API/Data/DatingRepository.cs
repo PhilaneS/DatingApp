@@ -112,7 +112,7 @@ namespace DatingApp.API.Data
 
         public async Task<Message> GetMessage(int id)
         {
-            return await _context.Messages.FirstOrDefaultAsync(m=> m.ID == id);
+            return await _context.Messages.FirstOrDefaultAsync(m=> m.Id == id);
         }
 
         public Task<PageList<Message>> GetMessagesForUser()

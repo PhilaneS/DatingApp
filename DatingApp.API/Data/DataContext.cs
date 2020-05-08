@@ -41,7 +41,7 @@ namespace DatingApp.API.Data
             .OnDelete(DeleteBehavior.Restrict);
 
              builder.Entity<Message>()
-            .HasOne(u => u.Recepient)
+            .HasOne(u => u.Recipient)
             .WithMany(n => n.MessageRecieved)
             .OnDelete(DeleteBehavior.Restrict);
         }

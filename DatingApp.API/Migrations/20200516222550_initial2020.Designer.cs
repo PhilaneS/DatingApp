@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200124194341_MessageEtintyAdded")]
-    partial class MessageEtintyAdded
+    [Migration("20200516222550_initial2020")]
+    partial class initial2020
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace DatingApp.API.Migrations
 
             modelBuilder.Entity("DatingApp.API.Models.Message", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content");
@@ -44,8 +44,6 @@ namespace DatingApp.API.Migrations
 
                     b.Property<DateTime>("MessageSent");
 
-                    b.Property<int?>("RecepientId");
-
                     b.Property<bool>("RecipientDeleted");
 
                     b.Property<int>("RecipientId");
@@ -54,9 +52,9 @@ namespace DatingApp.API.Migrations
 
                     b.Property<int>("SenderId");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("RecepientId");
+                    b.HasIndex("RecipientId");
 
                     b.HasIndex("SenderId");
 
@@ -150,9 +148,9 @@ namespace DatingApp.API.Migrations
 
             modelBuilder.Entity("DatingApp.API.Models.Message", b =>
                 {
-                    b.HasOne("DatingApp.API.Models.User", "Recepient")
+                    b.HasOne("DatingApp.API.Models.User", "Recipient")
                         .WithMany("MessageRecieved")
-                        .HasForeignKey("RecepientId")
+                        .HasForeignKey("RecipientId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DatingApp.API.Models.User", "Sender")

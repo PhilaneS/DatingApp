@@ -5,7 +5,7 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { MemberDetailComponent } from './Members/member-detail/member-detail.component';
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
-import { MemberListComponent } from './Members/member-list/member-List.component';
+import { MemberListComponent } from './Members/member-list/member-list.component';
 import { HomeComponent } from './Home/Home.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';

@@ -20,7 +20,6 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './Home/Home.component';
 import { RegisterComponent } from './register/register.component';
 import { appRoutes } from './routes';
-import { MemberListComponent } from './Members/member-list/member-List.component';
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberCardComponent } from './Members/member-card/member-card.component';
@@ -37,6 +36,7 @@ import { PhotoEditorComponent } from './Members/photo-editor/photo-editor.compon
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { MemberMessagesComponent } from './Members/member-messages/member-messages.component';
+import { MemberListComponent } from './Members/member-list/member-list.component';
 
 export function getToken() {
    return localStorage.getItem('token');

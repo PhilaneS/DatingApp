@@ -11,7 +11,7 @@ namespace DatingApp.API.Data
     {
         public static void SeedUsers(DataContext context) 
         {
-            //if(!context.Users.Any()){
+            if(!context.Users.Any()){
                 var userData = System.IO.File.ReadAllText("Data/userSeedData.json");
                 var users = JsonConvert.DeserializeObject<List<User>>(userData);
                 foreach (var user in users)
@@ -28,7 +28,7 @@ namespace DatingApp.API.Data
                 }
 
                 context.SaveChanges();
-            //}
+            }
         }
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

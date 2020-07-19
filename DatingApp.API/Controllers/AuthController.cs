@@ -6,6 +6,7 @@ using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
 using DatingApp.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +15,7 @@ namespace DatingApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
@@ -56,7 +58,7 @@ namespace DatingApp.API.Controllers
             var claims = new[]
             {
                  new Claim(ClaimTypes.NameIdentifier,userFromRepo.Id.ToString()),
-                 new Claim(ClaimTypes.Name,userFromRepo.Username)
+                 new Claim(ClaimTypes.Name,userFromRepo.UserName)
              };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.

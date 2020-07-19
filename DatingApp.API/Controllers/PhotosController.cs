@@ -14,7 +14,6 @@ using Microsoft.Extensions.Options;
 
 namespace DatingApp.API.Controllers
 {
-    [Authorize]
     [Route("api/user/{userId}/photos")]
     [ApiController]
     public class PhotosController : ControllerBase
@@ -83,7 +82,7 @@ namespace DatingApp.API.Controllers
 
             if(await _repo.SaveAll()) {
                 var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new { id = photo.Id }, photoToReturn);
+                return CreatedAtRoute("GetPhoto", new {userId, id = photo.Id }, photoToReturn);
             }
 
             return BadRequest("Could not add the photos");

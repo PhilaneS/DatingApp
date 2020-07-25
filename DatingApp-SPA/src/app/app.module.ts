@@ -38,6 +38,7 @@ import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { MemberMessagesComponent } from './Members/member-messages/member-messages.component';
 import { MemberListComponent } from './Members/member-list/member-list.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
 
 export function getToken() {
    return localStorage.getItem('token');
@@ -64,7 +65,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PhotoEditorComponent,
       TimeAgoPipe,
       MemberMessagesComponent,
-      AdminPanelComponent
+      AdminPanelComponent,
+      HasRoleDirective,
    ],
    imports: [
       BrowserModule,

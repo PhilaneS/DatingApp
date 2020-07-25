@@ -25,20 +25,20 @@ namespace DatingApp.API.Data
             builder.Entity<UserRole>(userRole => 
             {
                 userRole.HasKey(ur => new {ur.UserId, ur.RoleId});
+
                 userRole.HasOne(ur => ur.Role)
                 .WithMany(ur => ur.UserRoles)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
-            });
 
-             builder.Entity<UserRole>(userRole => 
-            {
-                userRole.HasKey(ur => new {ur.UserId, ur.RoleId});
+               
                 userRole.HasOne(ur => ur.User)
                 .WithMany(ur => ur.UserRoles)
                 .HasForeignKey(ur => ur.UserId)
                 .IsRequired();
             });
+
+              
 
             builder.Entity<Like>()
             .HasKey(k => new { k.LikerId, k.LikeeId });

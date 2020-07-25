@@ -17,7 +17,7 @@ export class MemberDetailComponent implements OnInit {
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  constructor(private userService: UserService,private authService: AuthService,
+  constructor(private userService: UserService, private authService: AuthService,
               private alertify: AlertifyService, private route: ActivatedRoute ) { }
 
   ngOnInit() {

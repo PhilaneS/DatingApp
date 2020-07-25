@@ -74,7 +74,7 @@ namespace DatingApp.API
             builder = new IdentityBuilder(builder.UserType,typeof(Role),builder.Services);
 
             builder.AddEntityFrameworkStores<DataContext>();
-            builder.AddRoleValidator<RoleManager<Role>>();
+            builder.AddRoleValidator<RoleValidator<Role>>();
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -88,6 +88,13 @@ namespace DatingApp.API
                         ValidateAudience =false
                     };
                 });
+            services.AddAuthorization(opt => 
+            {
+                opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                opt.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin","Moderator"));
+                opt.AddPolicy("VipOnlu", policy => policy.RequireRole("VIP"));
+             
+            } );
             services.AddControllers(options => 
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -106,7 +113,7 @@ namespace DatingApp.API
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //services.AddTransient<Seed>();
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
-            services.AddScoped<IAuthRepository, AuthRepository>();
+           // services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository,DatingRepository>();            
             services.AddScoped<LogUserActivity>();
         }

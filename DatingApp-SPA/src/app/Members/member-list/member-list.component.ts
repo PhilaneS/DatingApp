@@ -17,11 +17,12 @@ export class MemberListComponent implements OnInit {
   userParams: any = {};
   pagination: Pagination;
 
-  constructor(private userservice: UserService , private alertify: AlertifyService,private router: ActivatedRoute) { }
+  constructor(private userservice: UserService , private alertify: AlertifyService, private router: ActivatedRoute) { }
 
   ngOnInit() {
     this.router.data.subscribe(data => {
     this.users = data['users'].result;
+    console.log(this.users);
     this.pagination = data['users'].pagination;
     });
 
